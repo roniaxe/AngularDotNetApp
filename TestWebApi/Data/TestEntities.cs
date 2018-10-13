@@ -17,5 +17,7 @@ namespace TestWebApi.Data
         }
 
         public DbSet<Blog> Blogs { get; set; }
+
+        public DbSet<User> Users { get; set; }
     }
 }
