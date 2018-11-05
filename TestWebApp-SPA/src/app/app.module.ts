@@ -2,34 +2,41 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { Routes, RouterModule } from '@angular/router';
-import { MatTableModule } from '@angular/material/table';
-import { MatSortModule } from '@angular/material/sort';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MaterialModule } from './material.module';
+
+import { BlogService } from './blog/blog.service';
+import { AuthService } from './nav/services/auth.service';
 
 import { AppComponent } from './app.component';
-import { TestComponent } from './test/test.component';
 import { BlogComponent } from './blog/blog.component';
-import { BlogService } from './blog/blog.service';
+import { HomeComponent } from './home/home.component';
+import { NavComponent } from './nav/nav.component';
+import { LoginDialogComponent } from './nav/login/login-dialog.component';
 
 const routes: Routes = [
-  { path: '', component: BlogComponent, pathMatch: 'full' }
+  { path: '', component: HomeComponent, pathMatch: 'full' }
 ];
 
 @NgModule({
+  entryComponents: [LoginDialogComponent],
   declarations: [
     AppComponent,
-    TestComponent,
-    BlogComponent
+    BlogComponent,
+    HomeComponent,
+    NavComponent,
+    LoginDialogComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     RouterModule.forRoot(routes),
     BrowserAnimationsModule,
-    MatTableModule,
-    MatSortModule
+    ReactiveFormsModule,
+    MaterialModule
   ],
-  providers: [BlogService],
+  providers: [BlogService, AuthService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

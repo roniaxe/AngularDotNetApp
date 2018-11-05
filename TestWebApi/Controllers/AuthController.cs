@@ -65,6 +65,7 @@ namespace TestWebApi.Controllers
             {
                 SigningCredentials = cred,
                 Subject = new ClaimsIdentity(claims),
+                IssuedAt = DateTime.UtcNow,
                 Expires = DateTime.UtcNow.AddDays(1)
             };
 
@@ -75,8 +76,14 @@ namespace TestWebApi.Controllers
             return Ok(new
             {
                 token = tokenHandler.WriteToken(token),
-                exp = token.ValidTo.ToLocalTime()
+                exp = ToUnixTime(DateTime.UtcNow.AddDays(1)),
+                iat = ToUnixTime(DateTime.UtcNow)
             });
+        }
+        private long ToUnixTime(DateTime date)
+        {
+            var epoch = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+            return Convert.ToInt64((date - epoch).TotalSeconds);
         }
     }
 }

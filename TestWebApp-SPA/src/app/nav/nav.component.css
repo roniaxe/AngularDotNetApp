@@ -1,0 +1,12 @@
+.example-fill-remaining-space {
+  flex: 1 1 auto;
+}
+
+button.mat-button.active {
+  background: lightblue;
+}
+
+a {
+  text-decoration: none;
+  color: blue;
+}

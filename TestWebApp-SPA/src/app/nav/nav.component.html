@@ -1,0 +1,35 @@
+<mat-toolbar color="primary">
+
+  <mat-toolbar-row>
+    <span>
+      <a class="nav-link home" href="/">
+        <img alt="Home" height="72" src="../../assets/images/logos/anti-hazing-home-icon.jpg"
+          title="Home" width="150" class="ng-star-inserted">
+      </a>
+    </span>
+    <span class="example-fill-remaining-space"></span>
+    <button mat-button>About</button>
+    <button mat-button>Contact</button>
+    <button mat-button (click)="loginLogout()" #loginButton>{{ loggedIn() ? 'Logout' : 'Login' }}</button>
+
+    <button mat-icon-button [matMenuTriggerFor]="menu"
+      *ngIf="loggedIn()">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item>
+        <mat-icon>dialpad</mat-icon>
+        <span>Redial</span>
+      </button>
+      <button mat-menu-item disabled>
+        <mat-icon>voicemail</mat-icon>
+        <span>Check voicemail</span>
+      </button>
+      <button mat-menu-item>
+        <mat-icon>notifications_off</mat-icon>
+        <span>Disable alerts</span>
+      </button>
+    </mat-menu>
+
+  </mat-toolbar-row>
+</mat-toolbar>
