@@ -1,27 +1,22 @@
 <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
   <div mat-dialog-content>
     <div class="container">
-      <mat-form-field class="input-field">
-        <input matInput placeholder="Username" type="text"
-          formControlName="username" required>
-        <mat-error *ngIf="!!form.username.errors?.required">
-          Username Is required
-        </mat-error>
+
+      <mat-form-field>
+        <input matInput placeholder="Username" type="text" formControlName="username">
+        <mat-error *ngIf="!!form.username.errors?.required">Username Is required</mat-error>
       </mat-form-field>
 
       <mat-form-field>
-        <input matInput placeholder="Password" type="password"
-          formControlName="password" required>
-        <mat-error *ngIf="!!form.password.errors?.required">
-          Password Is required
-        </mat-error>
+        <input matInput placeholder="Password" type="password" formControlName="password">
+        <mat-error *ngIf="!!form.password.errors?.required">Password Is required</mat-error>
       </mat-form-field>
+
       <mat-error *ngIf="unauth">{{ unauth.statusText }}</mat-error>
     </div>
   </div>
   <div mat-dialog-actions>
     <button mat-stroked-button color="primary" type="submit" [disabled]="loginForm.invalid">Login</button>
-    <button mat-stroked-button color="primary" (click)="onNoClick()"
-      type="button">Close</button>
+    <button mat-stroked-button color="primary" (click)="onNoClick()" type="button">Close</button>
   </div>
 </form>

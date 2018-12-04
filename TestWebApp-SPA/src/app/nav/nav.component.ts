@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 
 import { LoginDialogComponent } from './login/login-dialog.component';
+import { AuthService } from './services/auth.service';
 
 @Component({
   selector: 'app-nav',
@@ -12,12 +13,16 @@ export class NavComponent implements OnInit {
   @ViewChild('loginButton')
   logginButton;
 
-  constructor(public loginDialog: MatDialog) {}
+  constructor(public loginDialog: MatDialog, private authService: AuthService) {}
 
-  ngOnInit() {}
+  loggedIn(): boolean {
+    return this.authService.loggedIn();
+  }
 
-  loggedIn() {
-    return !!localStorage.getItem('token');
+  ngOnInit() {
+    this.authService.getSubjectOb().subscribe(_ => {
+      this.loginLogout();
+    });
   }
 
   loginLogout(): void {

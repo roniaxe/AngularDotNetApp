@@ -3,15 +3,23 @@ import { LoginModel } from 'src/app/models/login.model';
 import { TokenObject } from 'src/app/models/token.model';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
+import { Observable, Subject } from 'rxjs';
+import { HttpService } from 'src/app/shared/services/http.service';
 
-@Injectable()
-export class AuthService {
-  private readonly baseUrl = 'https://localhost:5001/api/auth/';
+@Injectable({ providedIn: 'root' })
+export class AuthService extends HttpService {
 
-  constructor(private http: HttpClient) {}
+  private _subject: Subject<any> = new Subject<any>();
+  public get subject(): Subject<any> {
+    return this._subject;
+  }
+
+  constructor(private http: HttpClient) {
+    super();
+  }
 
   login(loginModel: LoginModel) {
-    return this.http.post(this.baseUrl + 'login', loginModel).pipe(
+    return this.http.post(`${this.baseUrl}auth/login`, loginModel).pipe(
       map((tokenObj: TokenObject) => {
         const token = tokenObj;
         if (token) {
@@ -22,5 +30,17 @@ export class AuthService {
         return tokenObj;
       })
     );
+  }
+
+  register(regModel: LoginModel) {
+    return this.http.post(`${this.baseUrl}auth/register`, regModel);
+  }
+
+  loggedIn() {
+    return !!localStorage.getItem('token');
+  }
+
+  getSubjectOb() {
+    return this.subject.asObservable();
   }
 }

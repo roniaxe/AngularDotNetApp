@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
 import { MatDialogRef } from '@angular/material/dialog';
 
@@ -22,8 +22,8 @@ export class LoginDialogComponent implements OnInit {
 
   ngOnInit(): void {
     this.loginForm = new FormGroup({
-      username: new FormControl(''),
-      password: new FormControl('')
+      username: new FormControl('', [Validators.required]),
+      password: new FormControl('', [Validators.required])
     });
   }
 
@@ -32,7 +32,6 @@ export class LoginDialogComponent implements OnInit {
   }
 
   onNoClick(): void {
-    console.log(this.loginForm);
     this.dialogRef.close();
   }
 
