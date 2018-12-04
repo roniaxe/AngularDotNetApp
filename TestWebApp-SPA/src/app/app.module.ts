@@ -14,9 +14,11 @@ import { BlogComponent } from './blog/blog.component';
 import { HomeComponent } from './home/home.component';
 import { NavComponent } from './nav/nav.component';
 import { LoginDialogComponent } from './nav/login/login-dialog.component';
+import { RegisterComponent } from './nav/register/register.component';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent, pathMatch: 'full' }
+  { path: '', component: HomeComponent, pathMatch: 'full' },
+  { path: 'register', component: RegisterComponent }
 ];
 
 @NgModule({
@@ -26,7 +28,8 @@ const routes: Routes = [
     BlogComponent,
     HomeComponent,
     NavComponent,
-    LoginDialogComponent
+    LoginDialogComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

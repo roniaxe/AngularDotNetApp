@@ -9,6 +9,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   imports: [
@@ -16,7 +17,12 @@ import { MatMenuModule } from '@angular/material/menu';
     MatFormFieldModule,
     MatButtonModule,
     MatInputModule,
-    MatCardModule
+    MatCardModule,
+    MatProgressSpinnerModule,
+    MatIconModule,
+    MatTooltipModule,
+    MatDialogModule,
+    MatMenuModule
   ],
   exports: [
     MatToolbarModule,
@@ -24,6 +30,7 @@ import { MatMenuModule } from '@angular/material/menu';
     MatButtonModule,
     MatInputModule,
     MatCardModule,
+    MatProgressSpinnerModule,
     MatIconModule,
     MatTooltipModule,
     MatDialogModule,

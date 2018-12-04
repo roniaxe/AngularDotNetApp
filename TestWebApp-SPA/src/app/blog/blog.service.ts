@@ -1,7 +1,7 @@
 import { OnInit, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Blog } from '../models/blog.model';
-import { HttpService } from '../http.service';
+import { HttpService } from '../shared/services/http.service';
 
 @Injectable()
 export class BlogService extends HttpService implements OnInit  {
@@ -13,7 +13,7 @@ export class BlogService extends HttpService implements OnInit  {
   ngOnInit(): void {}
 
   getBlogs() {
-    return this.http.get<Blog[]>('https://localhost:5001/api/blog', this.httpHeaders);
+    return this.http.get<Blog[]>(`${this.baseUrl}api/blog`, this.httpHeaders);
   }
 
 }
